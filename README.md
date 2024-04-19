@@ -31,6 +31,7 @@ https://isk.geobasis-bb.de/ows/alkis_vereinf_wfs?SERVICE=WFS&REQUEST=GetFeature&
 	</ogc:And>
 </ogc:Filter>
 ```
+\
 Aus der Antwort von der obigen Abfrage bekommt man die Polygon-Informationen des Flurstückes. Die Polygon-Informationen bestimmen die feste geografische Position des Flurstückes und werden dann als Inputs für weitere Abfragen genutzt, um wie z.B. die Bauleitplanung zu ermitteln. Die Polygon-Informationen sehen wie folgt aus:
 ```
 <gml:Polygon>
@@ -41,7 +42,7 @@ Aus der Antwort von der obigen Abfrage bekommt man die Polygon-Informationen des
     </gml:exterior>
 </gml:Polygon>
 ```
-
+\
 (2) Hole Bauleitplanung des Flurstückes. Dafür wird eine andere API über Bauleitplanung verwendet. Beispiel:
 ```
 https://gdi.stadt-brandenburg.de/ws/bauleitplanung?TYPENAME=ms:Bauluecken_Flaechen&SERVICE=WFS&version=1.1.0&REQUEST=GetFeature&srsName=urn:ogc:def:crs:EPSG::25833&FILTER=
@@ -60,6 +61,7 @@ https://gdi.stadt-brandenburg.de/ws/bauleitplanung?TYPENAME=ms:Bauluecken_Flaech
 ```
 Der Filter prüft das Flurstück auf Überschneidungen mit Bauleitplan. Wenn ein Element mit dem Namen "gml:featureMember" zurückgibt, bedeutet es, eine Überschneidung ist zu finden. Der Bau ist dann nur unter bestimmten Bedingungen zulässig.
 
+\
 (3) Hole Informationen über Naturschutzgebiet des Flurstückes mit einer weiteren API. Beispiel:
 ```
 https://inspire.brandenburg.de/services/schutzg_wfs?SERVICE=WFS&REQUEST=GetFeature&VERSION=1.1.0&TYPENAME=app:nsg&SRSNAME=urn:ogc:def:crs:EPSG::25833&FILTER=
@@ -89,15 +91,15 @@ Hier muss man beachten, dass die Nummer bei Dimensions 1536 fest ist. Diese Numm
 Später müssen noch einige Umgebungsvariablen festgelegt werden. Die Umgebungsvariablen für Pinecone sind `PINECONE_API_KEY`, `PINECONE_ENVIRONMENT` und `PINECONE_INDEX`. `PINECONE_API_KEY` findet man im Dashboard bei "API Keys", `PINECONE_ENVIRONMENT` ist bei Index (wie das Bild oben zeigt) zu sehen, in diesem Beispiel ist "gop-starter", `PINECONE_INDEX` ist der Index-Name "gpt-test". 
 
 ### GPT Retrieval Plugin (Datenbank Interface)
-Auf der GitHub-Seite sind die Konfigurationsschritte bereits beschrieben. Hier werden die Hauptschritte nochmal dokumentieren.
-1 Python 3.10 installiern
-2 Klone das Repository `git clone https://github.com/openai/chatgpt-retrieval-plugin.git`
+Auf der GitHub-Seite sind die Konfigurationsschritte bereits beschrieben. Hier werden die Hauptschritte nochmal dokumentieren.\
+1 Python 3.10 installiern\
+2 Klone das Repository `git clone https://github.com/openai/chatgpt-retrieval-plugin.git`\
 3 Gehe in das geklonte Verzeichnis `cd /path/to/chatgpt-retrieval-plugin`
-4 Poetry installieren `pip install poetry`
-5 Erstelle eine neue virtuelle Umgebung mit Python 3.10 `poetry env use python3.10`
-6 Aktiviere die virtuelle Umgebung `poetry shell`
-7 Dependencies installieren `poetry install`
-8 Bearer Token erstellen unter https://jwt.io/. Die Werte bei Paylod sind nach beliebigen zu bearbeiten
+4 Poetry installieren `pip install poetry`\
+5 Erstelle eine neue virtuelle Umgebung mit Python 3.10 `poetry env use python3.10`\
+6 Aktiviere die virtuelle Umgebung `poetry shell`\
+7 Dependencies installieren `poetry install`\
+8 Bearer Token erstellen unter https://jwt.io/. Die Werte bei Paylod sind nach beliebigen zu bearbeiten\
 9 Umgebungsvariablen einrichten wie folgt. Die Texte in <> müssen entsprechend ersetzt werden. `OPENAI_API_KEY` kann man bei https://platform.openai.com/ holen
 
 	export DATASTORE=pinecone
@@ -107,19 +109,19 @@ Auf der GitHub-Seite sind die Konfigurationsschritte bereits beschrieben. Hier w
 	export PINECONE_ENVIRONMENT=<your_pinecone_region_name>
 	export PINECONE_INDEX=<your_index_name>
 
-10 Führe die Datenbank Interface lokal aus `poetry run start`
+10 Führe die Datenbank Interface lokal aus `poetry run start`\
 11 Auf die API-Dokumentation zugreifen unter http://0.0.0.0:8000/docs und Endpoint testen
 
 ## 4. Projekt Starten
 ### Projekt Vorbereiten
-1 Klone das Repository `git clone https://github.com/huwenxin/sokib.git`
-2 Gehe in das geklonte Verzeichnis `cd /path/to/sokib`
+1 Klone das Repository `git clone https://github.com/huwenxin/sokib.git`\
+2 Gehe in das geklonte Verzeichnis `cd /path/to/sokib`\
 3 Öffne die Datei "secrets.py" und ersetze "xxxxx" mit richtigen Tokens
 
 ### Dokumente in Vektordatenbank Speichern
-1 Öffne die Datei "database_utils.py"
+1 Öffne die Datei "database_utils.py"\
 2 Pfad zu den benötigten Dokumenten, die in der Vektordatenbank gespeichert werden, eingeben (s. Bild)
-![Pfad bearbeiten](/pic/Pfad.png)
+![Pfad bearbeiten](/pic/Pfad.png)\
 3 Ausführe `python database_utils.py`
 
 Wenn das Hochladen erfolgreich ist, werden Sie folgende Messages sehen
