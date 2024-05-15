@@ -72,9 +72,24 @@ class Entity(BaseModel):
     skill: str
 
 
+class Input(BaseModel):
+    text: str
+
+
+class Value(BaseModel):
+    input: Input
+
+
+class Option(BaseModel):
+    label: str
+    value: Value
+
+
 class GenericItem(BaseModel):
     response_type: str
-    text: str
+    text: Optional[str] = None
+    title: Optional[str] = None
+    options: Optional[List[Option]] = None
 
 
 class IBMOutput(BaseModel):
@@ -142,11 +157,11 @@ class IBMChatInput(BaseModel):
 app = FastAPI()
 #app.answer = ''
 # logging.basicConfig(filename='info.log', level=logging.DEBUG)
-
+#
 # def log_info(req_body, res_body):
 #     logging.info(req_body)
 #     logging.info(res_body)
-
+#
 # @app.middleware('http')
 # async def some_middleware(request: Request, call_next):
 #     req_body = await request.body()
@@ -179,6 +194,13 @@ async def ask_chat(item: IBMChatInput):
     print("after the main function")
     item.payload.output.generic[0].response_type = "text"
     item.payload.output.generic[0].text = res
+    a = '{ "response_type":"text", "text":"Haben Sie weitere Fragen?" }'
+    jsa = json.loads(a)
+    item.payload.output.generic.append(jsa)
+    b = '{ "title":"Ihre Optionen:", "options":[{ "label":"zur Stadtplanung / zum Baurecht", "value":{"input":{ "text":"ghostrider"} }},{ "label":"zu anderen Themen", "value":{"input":{ "text":"superman"} }} ], "response_type":"option"}'
+    jsb = json.loads(b)
+    item.payload.output.generic.append(jsb)
+    item.payload.context.skills.main_skill.user_defined.apiinput = ''
     #ibm_res = '{ body : { payload : { output : { generic : [ { "response_type": "text", "text": ' + res + ', y\'all. } ], }, }, }, }'
     return item
 

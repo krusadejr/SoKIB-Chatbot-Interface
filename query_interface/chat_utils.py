@@ -151,7 +151,9 @@ def search_info_with_wfs(js: str) -> str:
     #print('feature_bauplan:')
     #print(feature_bauplan)
     if feature_bauplan is None:
-        wfs_res1 = ''
+        wfs_res1 = f"""
+        Beim Flurstück {json_flur['flurstueck']} (Flur {json_flur['flur']}, Gemarkung Brandenburg) liegt kein Bebauungsplan vor.
+    """
     else:
         wfs_res1 = f"""
         Das Flurstück {json_flur['flurstueck']} (Flur {json_flur['flur']}, Gemarkung Brandenburg) befindet sich im 
@@ -169,9 +171,9 @@ def search_info_with_wfs(js: str) -> str:
     #print('feature_naturschutz:')
     #print(feature_naturschutz)
     if feature_naturschutz is None:
-        wfs_res2 = wfs_res1 + ''
+        wfs_res2 = wfs_res1
     else:
-        wfs_res2 = wfs_res1 + f"""
+        wfs_res2 = f"""
         Das Flurstück {json_flur['flurstueck']} (Flur {json_flur['flur']}, Gemarkung Brandenburg) befindet sich im 
         Naturschutzgebiet. 
     """
@@ -209,9 +211,13 @@ def ask_with_flur(user_input: Dict[str, str]) -> Dict[str, Any]:
     """
     # extract info for "Flur" and "Flurstück"
     #json_response = extract_with_chatgpt_api(user_question)
-
-    json_response = '{ "flur": "' + user_input.flur + '", "flurstueck": "' + user_input.flstnrzae + '" }'
-    search_result = search_info_with_wfs(json_response)
+    if(user_input.flur != '0'):
+        print(user_input.flur)
+        json_response = '{ "flur": "' + user_input.flur + '", "flurstueck": "' + user_input.flstnrzae + '" }'
+        search_result = search_info_with_wfs(json_response)
+    else:
+        search_result = 'Es liegen keine Informationen über Flurstück vor'
+        print('search result' + search_result)
     # Get chunks from database.
     chunks_response = query_database(user_input.question)
     chunks = []

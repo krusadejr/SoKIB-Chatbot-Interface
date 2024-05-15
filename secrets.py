@@ -1,3 +1,3 @@
-OPENAI_API_KEY = "xxxxxxxxxxxxxxxxxxxxxx"
-DATABASE_INTERFACE_BEARER_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+OPENAI_API_KEY = "xxxxxxxxxxx"
+DATABASE_INTERFACE_BEARER_TOKEN = "xxxxxxxxxxxxx"
 

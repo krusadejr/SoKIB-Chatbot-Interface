@@ -147,7 +147,7 @@ Um Requests zu schicken, wird die Methode `POST` genutzt, da die Informationen �
     "question": "Ist es erlaubt ein Haus zu bauen bei Flur 093, Flurstück 27?"
 }
 ```
-Die zurückgegebene Antwort sollte wie folgt aussehen:
+Falls die Benutzer nur eine allgemeine Frage stellen möchten, sollte die Werte bei "flur" und "flstnrzae" auf "0" gesetzt werden. Die zurückgegebene Antwort sollte wie folgt aussehen:
 ```
 { "message": "some text" }
 ```
