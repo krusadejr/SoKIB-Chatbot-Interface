@@ -85,13 +85,13 @@ https://inspire.brandenburg.de/services/schutzg_wfs?SERVICE=WFS&REQUEST=GetFeatu
 Gehe auf https://www.pinecone.io/, erstelle ein Konto und melde sich an. Dann kann man zum Dashboard gehen und auf "Create Index" klicken. Dadurch gelangt man auf die Seite, auf der die erste Vektordatenbank erstellt werden kann (s. Bild).
 ![Example Pinecone set up](/pic/pinecone.png)
 
-Hier muss man beachten, dass die Nummer bei Dimensions 1536 fest ist. Diese Nummer sollte mit dem Embedding Modell übereinstimmen, d. h. mit der Dimensionen von `text-embedding-ada-002`. Index sollte dann wie folgt aussehen:
+Hier muss man beachten, dass die Zahl bei Dimensions 1536 fest ist. Diese Nummer sollte mit dem Embedding Modell übereinstimmen, d. h. mit der Dimensionen von `text-embedding-ada-002`. Index sollte dann wie folgt aussehen:
 ![Example Pinecone index](/pic/index.png)
 
 Später müssen noch einige Umgebungsvariablen festgelegt werden. Die Umgebungsvariablen für Pinecone sind `PINECONE_API_KEY`, `PINECONE_ENVIRONMENT` und `PINECONE_INDEX`. `PINECONE_API_KEY` findet man im Dashboard bei "API Keys", `PINECONE_ENVIRONMENT` ist bei Index (wie das Bild oben zeigt) zu sehen, in diesem Beispiel ist "gop-starter", `PINECONE_INDEX` ist der Index-Name "gpt-test". 
 
 ### GPT Retrieval Plugin (Datenbank Interface)
-Auf der GitHub-Seite sind die Konfigurationsschritte bereits beschrieben. Hier werden die Hauptschritte nochmal dokumentieren.\
+Auf der GitHub-Seite sind die Konfigurationsschritte bereits beschrieben. Hier werden die Hauptschritte nochmal dokumentiert.\
 1 Python 3.10 installiern\
 2 Klone das Repository `git clone https://github.com/openai/chatgpt-retrieval-plugin.git`\
 3 Gehe in das geklonte Verzeichnis `cd /path/to/chatgpt-retrieval-plugin`
@@ -139,7 +139,7 @@ Für die API Entwicklung wurde [FastAPI](https://fastapi.tiangolo.com) verwendet
 
 ### HTTP Requests
 Um Requests zu schicken, wird die Methode `POST` genutzt, da die Informationen über Flur, Flurstück sowie der Text der konkreten Frage auch verschickt werden sollten. In der Datei "main.py" gibt es zwei Pfade: `/chat` und `/chatIBM`.
-`chatIBM` ist spezifisch für IBM Watsonx Assistant, um die komplexen Abfragen von IBM Watsonx Assistant zu verarbeiten, denn wir die Funktion anhand dieser Anwendung demonstrieren wollen. `/chat` ist allgemeiner für alle selbstentwickelten Anwendungen geeignet. Request Body und Response sind beide in JSON Format. Das Request Body sollte dann wie folgt aussehen:\
+`chatIBM` ist spezifisch für IBM Watsonx Assistant, um die komplexen Abfragen von IBM Watsonx Assistant zu verarbeiten, denn wir die Funktion anhand dieser Anwendung demonstrieren wollen. `/chat` ist allgemeiner für alle selbstentwickelten Chatbots geeignet. Request Body und Response sind beide in JSON Format. Das Request Body sollte dann wie folgt aussehen:\
 ```
 {
     "flur": "093",
