@@ -114,7 +114,7 @@ Auf der GitHub-Seite sind die Konfigurationsschritte bereits beschrieben. Hier w
 
 ## 4. Projekt Starten
 ### Projekt Vorbereiten
-1 Klone das Repository `git clone https://github.com/huwenxin/sokib.git`\
+1) Klone das Repository `git clone https://github.com/huwenxin/sokib.git`\
 2 Gehe in das geklonte Verzeichnis `cd /path/to/sokib`\
 3 Öffne die Datei "secrets.py" und ersetze "xxxxx" mit richtigen Tokens
 
